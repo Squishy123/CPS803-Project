@@ -1,0 +1,7 @@
+name: fakenews
+channels:
+  - defaults
+dependencies:
+  - python=3.8
+  - numpy
+prefix: C:\Users\chris\miniconda3\envs\fakenews
