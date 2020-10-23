@@ -1,41 +1,58 @@
-import pandas as pd
-
+import util
 from sklearn.pipeline import Pipeline
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score, confusion_matrix,classification_report
 
 # References
 # https://analyticsindiamag.com/hands-on-guide-to-predict-fake-news-using-logistic-regression-svm-and-naive-bayes-methods/
 
-def main():
+def main(folder_path, train_file, test_file, save_file):
 
-    train_data = pd.read_csv('../datasets/train1.csv')
-    test_data = pd.read_csv('../datasets/test1.csv')
+    train_X, train_y = util.load_dataset(folder_path, train_file)
+    test_X, test_y = util.load_dataset(folder_path, test_file)
 
-    train_X = train_data['text']
-    train_y = train_data['label']
+    lrm = LogisticRegressionModel()
+    lrm.fit(train_X, train_y)
+    pred_y = lrm.predict(test_X)
 
-    train_X = train_X.values.astype(str)
-    train_y = train_y.values.astype('int')
+    util.print_accuracy_measures(test_y, pred_y)
 
-    test_X = test_data['text']
-    test_y = test_data['label']
+class LogisticRegressionModel:
+    """Logistic regression with Newton's Method as the solver.
 
-    test_X = test_X.values.astype(str)
-    test_y = test_y.values.astype('int')
+    Example usage:
+        > clf = LogisticRegression()
+        > clf.fit(x_train, y_train)
+        > clf.predict(x_eval)
+    """
 
-    pl = Pipeline([('count_vec', CountVectorizer()), ('tfidf', TfidfTransformer()), ('model', LogisticRegression())])
-    lr_model = pl.fit(train_X, train_y)
-    lr_pred = lr_model.predict(test_X)
+    def __init__(self):
+        """
+        Args:
+            step_size: Step size for iterative solvers only.
+            max_iter: Maximum number of iterations for the solver.
+            eps: Threshold for determining convergence.
+            theta_0: Initial guess for theta. If None, use the zero vector.
+            verbose: Print loss values during training.
+        """
+        self.model = None
 
-    # understand what each of this means
-    print("Accuracy of Logistic Regression Classifier: {}%".format(round(accuracy_score(test_y, lr_pred) * 100, 2)))
-    print("\nConfusion Matrix of Logistic Regression Classifier:\n")
-    print(confusion_matrix(test_y, lr_pred))
-    print("\nCLassification Report of Logistic Regression Classifier:\n")
-    print(classification_report(test_y, lr_pred))
+    def fit(self, X, y):
+        pl = Pipeline([('count_vec', CountVectorizer()),
+                       ('tfidf', TfidfTransformer()),
+                       ('model', LogisticRegression())])
+        self.model = pl.fit(X, y)
+
+    def predict(self, X):
+        lr_pred = self.model.predict(X)
+
+        return lr_pred
 
 if __name__ == "__main__":
-    main()
+    folder_path = '../datasets/'
+    train_file = 'train1.csv'
+    test_file = 'test1.csv'
+    save_file = 'pred1.csv'
+
+    main(folder_path, train_file, test_file, save_file)
