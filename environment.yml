@@ -4,4 +4,6 @@ channels:
 dependencies:
   - python=3.8
   - numpy
-prefix: C:\Users\chris\miniconda3\envs\fakenews
+  - pandas
+  - scikit-learn
+prefix: C:\Users\user\miniconda3\envs\fakenews
