@@ -12,9 +12,9 @@ def load_dataset(folder_path, file_name):
 
     return X, y
 
-def print_accuracy_measures(test_y, pred_y):
-    print("Accuracy of Logistic Regression Classifier: {}%".format(round(accuracy_score(test_y, pred_y) * 100, 2)))
-    print("\nConfusion Matrix of Logistic Regression Classifier:\n")
+def print_accuracy_measures(test_y, pred_y, label="Logistic Regression"):
+    print("Accuracy of " + label + " Classifier: {}%".format(round(accuracy_score(test_y, pred_y) * 100, 2)))
+    print("\nConfusion Matrix of " + label + " Classifier:\n")
     print(confusion_matrix(test_y, pred_y))
-    print("\nCLassification Report of Logistic Regression Classifier:\n")
+    print("\nCLassification Report of " + label + "  Classifier:\n")
     print(classification_report(test_y, pred_y))
