@@ -1,0 +1,11 @@
+name: fakenews
+channels:
+  - defaults
+dependencies:
+  - python=3.8
+  - numpy
+  - pandas
+  - scikit-learn
+  - ipykernel
+  - jupyterlab
+prefix: C:\Users\chris\miniconda3\envs\fakenews
