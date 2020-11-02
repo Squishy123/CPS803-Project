@@ -1,5 +1,5 @@
 import pandas as pd
-from sklearn.metrics import accuracy_score, confusion_matrix,classification_report
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
 
 def load_dataset(folder_path, file_name):
     dataset = pd.read_csv(folder_path + file_name)
