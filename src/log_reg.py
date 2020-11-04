@@ -48,9 +48,9 @@ class LogisticRegressionModel:
         return lr_pred
 
 if __name__ == "__main__":
-    folder_path = '../datasets/'
-    train_file = 'train1.csv'
-    test_file = 'test1.csv'
-    save_file = 'pred1.csv'
+    folder_path = 'datasets/kaggle_clement/'
+    train_file = 'train.csv'
+    test_file = 'test.csv'
+    save_file = 'test_pred.csv'
 
     main(folder_path, train_file, test_file, save_file)
