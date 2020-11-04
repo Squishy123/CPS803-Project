@@ -32,7 +32,7 @@ def split_train_test_valid(file_path, train_path, test_path, valid_path):
     test_df.to_csv(test_path, index=False)
     valid_df.to_csv(valid_path, index=False)
 
-def main():
+# def main():
     # creating combined dataset file
     # true_path = 'datasets/kaggle_clement/True.csv'
     # fake_path = 'datasets/kaggle_clement/Fake.csv'
@@ -48,5 +48,5 @@ def main():
     #
     # split_train_test_valid(file_path, train_path, test_path, valid_path)
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
