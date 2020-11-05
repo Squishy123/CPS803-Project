@@ -1,7 +1,6 @@
 import util
 from sklearn.pipeline import Pipeline
-from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.feature_extraction.text import TfidfTransformer
+from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 
 # References
@@ -39,8 +38,7 @@ class LogisticRegressionModel:
         self.model = None
 
     def fit(self, X, y):
-        pl = Pipeline([('count_vec', CountVectorizer()),
-                       ('tfidf', TfidfTransformer()),
+        pl = Pipeline([('tfidf', TfidfVectorizer()),
                        ('model', LogisticRegression())])
         self.model = pl.fit(X, y)
 
@@ -50,9 +48,9 @@ class LogisticRegressionModel:
         return lr_pred
 
 if __name__ == "__main__":
-    folder_path = '../datasets/'
-    train_file = 'train1.csv'
-    test_file = 'test1.csv'
-    save_file = 'pred1.csv'
+    folder_path = 'datasets/kaggle_clement/'
+    train_file = 'train.csv'
+    test_file = 'test.csv'
+    save_file = 'test_pred.csv'
 
     main(folder_path, train_file, test_file, save_file)
