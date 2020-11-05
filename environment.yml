@@ -7,4 +7,6 @@ dependencies:
   - pandas
   - scikit-learn
   - ipykernel
+  - jupyterlab
+  - matplotlib
 prefix: C:\Users\chris\miniconda3\envs\fakenews
