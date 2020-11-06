@@ -9,4 +9,5 @@ dependencies:
   - ipykernel
   - jupyterlab
   - matplotlib
+  - mlxtend
 prefix: C:\Users\chris\miniconda3\envs\fakenews
