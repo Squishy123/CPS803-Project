@@ -13,25 +13,13 @@ def load_dataset(folder_path, file_name):
 
     return X, y
 
-<<<<<<< HEAD
 def plot_conf_mat(y, y_pred):
     cm = confusion_matrix(y, y_pred, labels=[0, 1])
     plot = plot_confusion_matrix(conf_mat=cm, show_absolute=True, show_normed=True, colorbar=True)
     return plot
 
-def print_accuracy_measures(test_y, pred_y):
+def print_accuracy_measures(test_y, pred_y, label="Logistic Regression"):
     print("Accuracy of Logistic Regression Classifier: {}%".format(round(accuracy_score(test_y, pred_y) * 100, 2)))
 
-    # repetitive so taking out
-    # print("\nConfusion Matrix of Logistic Regression Classifier:\n")
-    # print(confusion_matrix(test_y, pred_y))
-
-    print("\nCLassification Report of Logistic Regression Classifier:\n")
-=======
-def print_accuracy_measures(test_y, pred_y, label="Logistic Regression"):
-    print("Accuracy of " + label + " Classifier: {}%".format(round(accuracy_score(test_y, pred_y) * 100, 2)))
-    print("\nConfusion Matrix of " + label + " Classifier:\n")
-    print(confusion_matrix(test_y, pred_y))
-    print("\nCLassification Report of " + label + "  Classifier:\n")
->>>>>>> naive_bayes_model
+    print("\nCLassification Report of " + label +  " Classifier:\n")
     print(classification_report(test_y, pred_y))
