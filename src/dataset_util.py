@@ -41,12 +41,13 @@ def split_train_test_valid(file_path, train_path, test_path, valid_path):
     # combine_true_fake_datasets(true_path, fake_path, save_path)
 
     # dividing dataset
-    # file_path = 'datasets/kaggle_clement/dataset.csv'
-    # train_path = 'datasets/kaggle_clement/train.csv'
-    # test_path = 'datasets/kaggle_clement/test.csv'
-    # valid_path = 'datasets/kaggle_clement/valid.csv'
+    # file_path = 'datasets/kaggle_ruchi/dataset.csv'
+    # train_path = 'datasets/kaggle_ruchi/train.csv'
+    # test_path = 'datasets/kaggle_ruchi/test.csv'
+    # valid_path = 'datasets/kaggle_ruchi/valid.csv'
     #
     # split_train_test_valid(file_path, train_path, test_path, valid_path)
+
 
 # if __name__ == "__main__":
 #     main()

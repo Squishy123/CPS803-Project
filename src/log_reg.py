@@ -8,16 +8,16 @@ from sklearn.metrics import plot_confusion_matrix
 # References
 # https://analyticsindiamag.com/hands-on-guide-to-predict-fake-news-using-logistic-regression-svm-and-naive-bayes-methods/
 
-def main(folder_path, train_file, test_file, save_file):
-
-    train_X, train_y = util.load_dataset(folder_path, train_file)
-    test_X, test_y = util.load_dataset(folder_path, test_file)
-
-    lrm = LogisticRegressionModel()
-    lrm.fit(train_X, train_y)
-    pred_y = lrm.predict(test_X)
-
-    util.print_accuracy_measures(test_y, pred_y)
+# def main(folder_path, train_file, test_file, save_file):
+#
+#     train_X, train_y = util.load_dataset(folder_path, train_file)
+#     test_X, test_y = util.load_dataset(folder_path, test_file)
+#
+#     lrm = LogisticRegressionModel()
+#     lrm.fit(train_X, train_y)
+#     pred_y = lrm.predict(test_X)
+#
+#     util.print_accuracy_measures(test_y, pred_y)
 
 class LogisticRegressionModel:
     """Logistic regression with Newton's Method as the solver.
@@ -49,10 +49,10 @@ class LogisticRegressionModel:
 
         return lr_pred
 
-if __name__ == "__main__":
-    folder_path = 'datasets/kaggle_clement/'
-    train_file = 'train.csv'
-    test_file = 'test.csv'
-    save_file = 'test_pred.csv'
-
-    main(folder_path, train_file, test_file, save_file)
+# if __name__ == "__main__":
+#     folder_path = 'datasets/kaggle_clement/'
+#     train_file = 'train.csv'
+#     test_file = 'test.csv'
+#     save_file = 'test_pred.csv'
+#
+#     main(folder_path, train_file, test_file, save_file)
