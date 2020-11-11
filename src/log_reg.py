@@ -14,7 +14,7 @@ from sklearn.metrics import plot_confusion_matrix
 #     test_X, test_y = util.load_dataset(folder_path, test_file)
 #
 #     lrm = LogisticRegressionModel()
-#     lrm.fit(train_X, train_y)
+#     lrm.fit(train_X, train_y, (1, 2))
 #     pred_y = lrm.predict(test_X)
 #
 #     util.print_accuracy_measures(test_y, pred_y)
@@ -39,8 +39,8 @@ class LogisticRegressionModel:
         """
         self.model = None
 
-    def fit(self, X, y):
-        pl = Pipeline([('tfidf', TfidfVectorizer()),
+    def fit(self, X, y, ngram=(1, 1)):
+        pl = Pipeline([('tfidf', TfidfVectorizer(ngram_range=ngram)),
                        ('model', LogisticRegression())])
         self.model = pl.fit(X, y)
 
@@ -50,7 +50,7 @@ class LogisticRegressionModel:
         return lr_pred
 
 # if __name__ == "__main__":
-#     folder_path = 'datasets/kaggle_clement/'
+#     folder_path = 'datasets/kaggle_ruchi/split_files/'
 #     train_file = 'train.csv'
 #     test_file = 'test.csv'
 #     save_file = 'test_pred.csv'
