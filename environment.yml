@@ -6,4 +6,8 @@ dependencies:
   - numpy
   - pandas
   - scikit-learn
-prefix: C:\Users\user\miniconda3\envs\fakenews
+  - ipykernel
+  - jupyterlab
+  - matplotlib
+  - mlxtend
+prefix: C:\Users\chris\miniconda3\envs\fakenews
