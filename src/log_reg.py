@@ -10,8 +10,35 @@ from sklearn.metrics import plot_confusion_matrix
 
 def main(folder_path, train_file, test_file, save_file):
 
-    train_X, train_y = util.load_dataset(folder_path, train_file)
-    test_X, test_y = util.load_dataset(folder_path, test_file)
+    test = [
+        [
+            ["This is a sentence"],
+            ["The sky is blue and white"],
+            ["I don't want to study"]
+        ],
+        [
+            ["Can dogs see colours"],
+            ["What goes on in cat's minds"]
+        ],
+        [
+            ["Spaghetti is made by boiling noodles"],
+            ["Use fresh tomatoes for better flavour"],
+            ["Don't forget the garlic bread"]
+        ]
+    ]
+
+    test2 = [
+         "This is a sentence. The sky is blue and white. I don't want to study",
+        "Can dogs see colours? What goes on in cat's minds",
+        "Spaghetti is made by boiling noodles. Use fresh tomatoes for better flavour. Don't forget the garlic bread"
+    ]
+
+    vectorizer = TfidfVectorizer(ngram_range=(1, 2))
+    X = vectorizer.fit_transform(test2)
+    print(vectorizer.get_feature_names())
+
+    # train_X, train_y = util.load_dataset(folder_path, train_file)
+    # test_X, test_y = util.load_dataset(folder_path, test_file)
 
     # lrm = LogisticRegressionModel()
     # lrm.fit(train_X, train_y, (1, 2))
