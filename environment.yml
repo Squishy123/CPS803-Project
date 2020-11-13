@@ -9,5 +9,5 @@ dependencies:
   - jupyterlab
   - ipykernel
   - numpy
-  - tensorflow
+  - tensorflow-gpu
 prefix: C:\Users\chris\miniconda3\envs\fakenews
