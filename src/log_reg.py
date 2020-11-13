@@ -1,9 +1,8 @@
 import util
-import matplotlib.pyplot as plt
 from sklearn.pipeline import Pipeline
 from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.feature_extraction import text
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import plot_confusion_matrix
 
 # References
 # https://analyticsindiamag.com/hands-on-guide-to-predict-fake-news-using-logistic-regression-svm-and-naive-bayes-methods/
@@ -47,10 +46,9 @@ def main(folder_path, train_file, test_file, save_file):
     # util.print_accuracy_measures(test_y, pred_y)
 
 class LogisticRegressionModel:
-    """Logistic regression with Newton's Method as the solver.
-
+    """
     Example usage:
-        > clf = LogisticRegression()
+        > clf = LogisticRegressionModel()
         > clf.fit(x_train, y_train)
         > clf.predict(x_eval)
     """
@@ -58,16 +56,11 @@ class LogisticRegressionModel:
     def __init__(self):
         """
         Args:
-            step_size: Step size for iterative solvers only.
-            max_iter: Maximum number of iterations for the solver.
-            eps: Threshold for determining convergence.
-            theta_0: Initial guess for theta. If None, use the zero vector.
-            verbose: Print loss values during training.
         """
         self.model = None
 
     def fit(self, X, y, ngram=(1, 1)):
-        pl = Pipeline([('tfidf', TfidfVectorizer(ngram_range=ngram)),
+        pl = Pipeline([('tfidf', TfidfVectorizer(stop_words=text.ENGLISH_STOP_WORDS, ngram_range=ngram)),
                        ('model', LogisticRegression())])
         self.model = pl.fit(X, y)
 
