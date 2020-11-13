@@ -10,8 +10,7 @@ dependencies:
   - pandas
   - ipykernel
   - numpy
-  - pip:
-    - "--editable=git+git://github.com/stared/livelossplot.git"
+  - pip
   - git
   - keras
 prefix: C:\Users\Chris\miniconda3\envs\fakenews
