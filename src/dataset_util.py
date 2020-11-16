@@ -32,7 +32,20 @@ def split_train_test_valid(file_path, train_path, test_path, valid_path):
     test_df.to_csv(test_path, index=False)
     valid_df.to_csv(valid_path, index=False)
 
-# def main():
+def replace_labels(file_path, save_path, true_label, fake_label):
+    df = pd.read_csv(file_path)
+    df = df.replace({true_label: 1, fake_label: 0})
+
+    df.to_csv(save_path, index=False)
+
+def clean_dataset(file_path):
+    df = pd.read_csv(file_path)
+    df = df[df['text'].notnull()]
+    df = df[df['label'].notnull()]
+
+    df.to_csv(file_path, index=False)
+
+def main():
     # creating combined dataset file
     # true_path = 'datasets/kaggle_clement/True.csv'
     # fake_path = 'datasets/kaggle_clement/Fake.csv'
@@ -40,13 +53,22 @@ def split_train_test_valid(file_path, train_path, test_path, valid_path):
     #
     # combine_true_fake_datasets(true_path, fake_path, save_path)
 
-    # dividing dataset
-    # file_path = 'datasets/kaggle_clement/dataset.csv'
-    # train_path = 'datasets/kaggle_clement/train.csv'
-    # test_path = 'datasets/kaggle_clement/test.csv'
-    # valid_path = 'datasets/kaggle_clement/valid.csv'
-    #
-    # split_train_test_valid(file_path, train_path, test_path, valid_path)
+    # replacing labels in dataset
+    # file_path = 'datasets/kaggle_ruchi/news_articles.csv'
+    # new_path = "datasets/kaggle_ruchi/dataset.csv"
+    # replace_labels(file_path, new_path, "Real", "Fake")
 
-# if __name__ == "__main__":
-#     main()
+    # dividing dataset
+    file_path = "datasets/kaggle_comp/dataset.csv"
+    train_path = 'datasets/kaggle_comp/train.csv'
+    test_path = 'datasets/kaggle_comp/test.csv'
+    valid_path = 'datasets/kaggle_comp/valid.csv'
+
+    split_train_test_valid(file_path, train_path, test_path, valid_path)
+
+    # getting rid of nan text and label rows
+    # file_path = "datasets/kaggle_ruchi/dataset.csv"
+    # clean_dataset(file_path)
+
+if __name__ == "__main__":
+    main()
