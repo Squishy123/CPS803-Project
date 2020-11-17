@@ -10,4 +10,5 @@ dependencies:
   - jupyterlab
   - matplotlib
   - mlxtend
+  - gensim
 prefix: C:\Users\chris\miniconda3\envs\fakenews
