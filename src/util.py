@@ -1,7 +1,5 @@
 import pandas as pd
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
-from mlxtend.plotting import plot_confusion_matrix
-
 def load_dataset(folder_path, file_name):
     dataset = pd.read_csv(folder_path + file_name)
 
@@ -12,11 +10,6 @@ def load_dataset(folder_path, file_name):
     y = y.values.astype('int')
 
     return X, y
-
-def plot_conf_mat(y, y_pred):
-    cm = confusion_matrix(y, y_pred, labels=[0, 1])
-    plot = plot_confusion_matrix(conf_mat=cm, show_absolute=True, show_normed=True, colorbar=True)
-    return plot
 
 def print_accuracy_measures(test_y, pred_y, label="Logistic Regression"):
     print("Accuracy of Logistic Regression Classifier: {}%".format(round(accuracy_score(test_y, pred_y) * 100, 2)))

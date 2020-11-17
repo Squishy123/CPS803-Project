@@ -3,6 +3,11 @@ Fake News Detection
 
 Checkout [Contributions](CONTRIBUTIONS.md)
 
+# First Creating Environment
+```
+conda env create -f environment.yml
+```
+
 # Activating and Deactivation Conda Environment
 ```
 conda activate fakenews
