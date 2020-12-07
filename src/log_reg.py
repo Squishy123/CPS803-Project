@@ -3,47 +3,65 @@ from sklearn.pipeline import Pipeline
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.feature_extraction import text
 from sklearn.linear_model import LogisticRegression
+import numpy as np
+from sklearn.model_selection import learning_curve
+import matplotlib.pyplot as plt
 
 # References
 # https://analyticsindiamag.com/hands-on-guide-to-predict-fake-news-using-logistic-regression-svm-and-naive-bayes-methods/
 
 def main(folder_path, train_file, test_file, save_file):
+    train_X, train_y = util.load_dataset(folder_path, train_file)
 
-    test = [
-        [
-            ["This is a sentence"],
-            ["The sky is blue and white"],
-            ["I don't want to study"]
-        ],
-        [
-            ["Can dogs see colours"],
-            ["What goes on in cat's minds"]
-        ],
-        [
-            ["Spaghetti is made by boiling noodles"],
-            ["Use fresh tomatoes for better flavour"],
-            ["Don't forget the garlic bread"]
-        ]
-    ]
+    vectorizer = TfidfVectorizer()
+    train_X = vectorizer.fit_transform(train_X)
 
-    test2 = [
-         "This is a sentence. The sky is blue and white. I don't want to study",
-        "Can dogs see colours? What goes on in cat's minds",
-        "Spaghetti is made by boiling noodles. Use fresh tomatoes for better flavour. Don't forget the garlic bread"
-    ]
+    axes = None
+    title = "Logistic Regression Model"
+    ylim = None
+    estimator = LogisticRegression()
+    X = train_X
+    y = train_y
+    cv = None
+    n_jobs = None
+    train_sizes = [100, 500, 1000]
 
-    vectorizer = TfidfVectorizer(ngram_range=(1, 2))
-    X = vectorizer.fit_transform(test2)
-    print(vectorizer.get_feature_names())
+    if axes is None:
+        _, axes = plt.subplots(1, 3, figsize=(20, 5))
 
-    # train_X, train_y = util.load_dataset(folder_path, train_file)
-    # test_X, test_y = util.load_dataset(folder_path, test_file)
+    axes[0].set_title(title)
+    if ylim is not None:
+        axes[0].set_ylim(*ylim)
+    axes[0].set_xlabel("Training examples")
+    axes[0].set_ylabel("Score")
 
-    # lrm = LogisticRegressionModel()
-    # lrm.fit(train_X, train_y, (1, 2))
-    # pred_y = lrm.predict(test_X)
-    #
-    # util.print_accuracy_measures(test_y, pred_y)
+    train_sizes, train_scores, test_scores, fit_times, _ = \
+        learning_curve(estimator, X, y, cv=cv, n_jobs=n_jobs,
+                       train_sizes=train_sizes,
+                       return_times=True)
+    train_scores_mean = np.mean(train_scores, axis=1)
+    train_scores_std = np.std(train_scores, axis=1)
+    test_scores_mean = np.mean(test_scores, axis=1)
+    test_scores_std = np.std(test_scores, axis=1)
+    fit_times_mean = np.mean(fit_times, axis=1)
+    fit_times_std = np.std(fit_times, axis=1)
+
+    # Plot learning curve
+    axes[0].grid()
+    axes[0].fill_between(train_sizes, train_scores_mean - train_scores_std,
+                         train_scores_mean + train_scores_std, alpha=0.1,
+                         color="r")
+    axes[0].fill_between(train_sizes, test_scores_mean - test_scores_std,
+                         test_scores_mean + test_scores_std, alpha=0.1,
+                         color="g")
+    axes[0].plot(train_sizes, train_scores_mean, 'o-', color="r",
+                 label="Training score")
+    axes[0].plot(train_sizes, test_scores_mean, 'o-', color="g",
+                 label="Cross-validation score")
+    axes[0].legend(loc="best")
+
+    train_sizes, train_scores, valid_scores = learning_curve(LogisticRegression(), train_X, train_y, train_sizes=[100, 500, 1000], cv=5)
+    a = 2
 
 class LogisticRegressionModel:
     """

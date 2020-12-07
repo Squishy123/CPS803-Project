@@ -32,6 +32,13 @@ def split_train_test_valid(file_path, train_path, test_path, valid_path):
     test_df.to_csv(test_path, index=False)
     valid_df.to_csv(valid_path, index=False)
 
+def combine_train_test(train_path, test_path, save_path):
+    train = pd.read_csv(train_path)
+    test = pd.read_csv(test_path)
+
+    comb = train.append(test)
+    comb.to_csv(save_path, index=False)
+
 def replace_labels(file_path, save_path, true_label, fake_label):
     df = pd.read_csv(file_path)
     df = df.replace({true_label: 1, fake_label: 0})
