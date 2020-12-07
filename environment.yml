@@ -2,12 +2,16 @@ name: fakenews
 channels:
   - defaults
 dependencies:
-  - python=3.8
-  - numpy
-  - pandas
-  - scikit-learn
-  - ipykernel
-  - jupyterlab
   - matplotlib
-  - mlxtend
-prefix: C:\Users\chris\miniconda3\envs\fakenews
+  - scikit-learn
+  - jupyterlab
+  - tensorflow-gpu
+  - python=3.7
+  - pandas
+  - ipykernel
+  - numpy
+  - pip
+  - git
+  - keras
+prefix: C:\Users\Chris\miniconda3\envs\fakenews
+
