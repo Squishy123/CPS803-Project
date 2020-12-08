@@ -32,11 +32,11 @@ def split_train_test_valid(file_path, train_path, test_path, valid_path):
     test_df.to_csv(test_path, index=False)
     valid_df.to_csv(valid_path, index=False)
 
-def combine_train_test(train_path, test_path, save_path):
+def combine_train_valid(train_path, valid_path, save_path):
     train = pd.read_csv(train_path)
-    test = pd.read_csv(test_path)
+    valid = pd.read_csv(valid_path)
 
-    comb = train.append(test)
+    comb = train.append(valid)
     comb.to_csv(save_path, index=False)
 
 def replace_labels(file_path, save_path, true_label, fake_label):
@@ -66,16 +66,22 @@ def main():
     # replace_labels(file_path, new_path, "Real", "Fake")
 
     # dividing dataset
-    file_path = "datasets/kaggle_comp/dataset.csv"
-    train_path = 'datasets/kaggle_comp/train.csv'
-    test_path = 'datasets/kaggle_comp/test.csv'
-    valid_path = 'datasets/kaggle_comp/valid.csv'
-
-    split_train_test_valid(file_path, train_path, test_path, valid_path)
+    # file_path = "datasets/kaggle_comp/dataset.csv"
+    # train_path = 'datasets/kaggle_comp/train.csv'
+    # test_path = 'datasets/kaggle_comp/test.csv'
+    # valid_path = 'datasets/kaggle_comp/valid.csv'
+    #
+    # split_train_test_valid(file_path, train_path, test_path, valid_path)
 
     # getting rid of nan text and label rows
     # file_path = "datasets/kaggle_ruchi/dataset.csv"
     # clean_dataset(file_path)
+
+    # combine train and valid
+    train_path = 'datasets/kaggle_clement/train.csv'
+    valid_path = 'datasets/kaggle_clement/valid.csv'
+    file_path = 'datasets/kaggle_clement/train_valid.csv'
+    combine_train_valid(train_path, valid_path, file_path)
 
 if __name__ == "__main__":
     main()
