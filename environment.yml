@@ -2,13 +2,18 @@ name: fakenews
 channels:
   - defaults
 dependencies:
-  - python=3.8
-  - numpy
-  - pandas
-  - scikit-learn
-  - ipykernel
-  - jupyterlab
   - matplotlib
+  - scikit-learn
+  - jupyterlab
+  - pip
+  - numpy
   - pip:
     - mlxtend
-prefix: C:\Users\chris\miniconda3\envs\fakenews
+    - git+git://github.com/stared/livelossplot.git
+  - tensorflow-gpu
+  - python=3.7
+  - pandas
+  - ipykernel
+  - git
+  - keras
+prefix: C:\Users\Chris\miniconda3\envs\fakenews
