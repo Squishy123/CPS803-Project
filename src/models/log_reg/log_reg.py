@@ -15,14 +15,14 @@ def main(folder_path, train_valid_file, test_file, save_file):
     vectorizer = TfidfVectorizer()
     X = vectorizer.fit_transform(X)
 
-    title = "Logistic Regression Model"
+    title = "logistic_regression_base_clement_learning_curve"
     estimator = LogisticRegression()
 
     cv = ShuffleSplit(n_splits=5, test_size=0.1875, random_state=0)
 
     plot = util.plot_learning_curve(estimator, title, X, y, cv=cv, n_jobs=4)
-    plot.show()
     plot.savefig('log_reg_default_learning_curve.png')
+    plot.show()
 
 
 class LogisticRegressionModel:
