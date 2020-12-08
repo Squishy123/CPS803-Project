@@ -9,6 +9,7 @@ dependencies:
   - numpy
   - pip:
     - mlxtend
+  - pip:
     - git+git://github.com/stared/livelossplot.git
   - tensorflow-gpu
   - python=3.7

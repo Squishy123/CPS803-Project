@@ -1,4 +1,4 @@
-import util
+from src import util
 from sklearn.pipeline import Pipeline
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.feature_extraction import text
@@ -18,7 +18,7 @@ def main(folder_path, train_valid_file, test_file, save_file):
     title = "Logistic Regression Model"
     estimator = LogisticRegression()
 
-    cv = ShuffleSplit(n_splits=10, test_size=0.1275, random_state=0)
+    cv = ShuffleSplit(n_splits=5, test_size=0.1875, random_state=0)
 
     plot = util.plot_learning_curve(estimator, title, X, y, cv=cv, n_jobs=4)
     plot.show()
@@ -50,7 +50,7 @@ class LogisticRegressionModel:
         return lr_pred
 
 if __name__ == "__main__":
-    folder_path = 'datasets/kaggle_clement/split_files/'
+    folder_path = '../../datasets/kaggle_clement/split_files/'
     train_valid_file = 'train_valid.csv'
     test_file = 'test.csv'
     save_file = 'test_pred.csv'
