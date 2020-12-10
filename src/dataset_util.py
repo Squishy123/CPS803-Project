@@ -2,19 +2,16 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.feature_extraction import text
-from wordcloud import WordCloud, STOPWORDS
+from wordcloud import WordCloud
 
 # Reference
 # https://www.geeksforgeeks.org/generating-word-cloud-python/#:~:text=Word%20Cloud%20is%20a%20data,indicates%20its%20frequency%20or%20importance.&text=The%20dataset%20used%20for%20generating,on%20videos%20of%20popular%20artists.
 
-def generate_word_cloud(dataset_file, save_file):
-    df = pd.read_csv(dataset_file)
-    fake_df = df[df.label == 0].text
+def generate_word_cloud(dataset, save_file):
 
     words = ''
-    stopwords = text.ENGLISH_STOP_WORDS
 
-    for txt in fake_df:
+    for txt in dataset:
         tokens = txt.split()
 
         for i in range(len(tokens)):
@@ -25,7 +22,9 @@ def generate_word_cloud(dataset_file, save_file):
     wordcloud = WordCloud(width=800, height=800,
                           background_color="white",
                           stopwords=text.ENGLISH_STOP_WORDS,
-                          min_font_size=10).generate(words)
+                          min_font_size=10,
+                          min_word_length=2,
+                          repeat=False).generate(words)
 
     plt.figure(figsize=(8, 8), facecolor=None)
     plt.imshow(wordcloud)
@@ -84,9 +83,23 @@ def clean_dataset(file_path):
 
 def main():
     # word cloud
-    file = "datasets/kaggle_clement/og files/dataset.csv"
-    save_file = "fake_news_word_cloud_clement.png"
-    generate_word_cloud(file, save_file)
+    # clement
+    # file = "datasets/kaggle_clement/og files/dataset.csv"
+    # save_file = "fake_news_word_cloud_clement.png"
+    #
+    # df = pd.read_csv(file)
+    # fake_df = df[df.label == 0].text
+    #
+    # generate_word_cloud(fake_df, save_file)
+
+    # comp
+    file = "datasets/kaggle_comp/og_files/dataset.csv"
+    save_file = "fake_news_word_cloud_comp.png"
+
+    df = pd.read_csv(file)
+    fake_df = df[df.label == 0].text
+
+    generate_word_cloud(fake_df, save_file)
 
 if __name__ == "__main__":
     main()
