@@ -1,6 +1,36 @@
 import numpy as np
 import pandas as pd
-# from sklearn.model_selection import train_test_split
+import matplotlib.pyplot as plt
+from sklearn.feature_extraction import text
+from wordcloud import WordCloud
+
+# Reference
+# https://www.geeksforgeeks.org/generating-word-cloud-python/#:~:text=Word%20Cloud%20is%20a%20data,indicates%20its%20frequency%20or%20importance.&text=The%20dataset%20used%20for%20generating,on%20videos%20of%20popular%20artists.
+
+def generate_word_cloud(dataset, save_file):
+
+    words = ''
+
+    for txt in dataset:
+        tokens = txt.split()
+
+        for i in range(len(tokens)):
+            tokens[i] = tokens[i].lower()
+
+        words += " ".join(tokens) + " "
+
+    wordcloud = WordCloud(width=800, height=800,
+                          background_color="white",
+                          stopwords=text.ENGLISH_STOP_WORDS,
+                          min_font_size=10,
+                          min_word_length=2,
+                          repeat=False).generate(words)
+
+    plt.figure(figsize=(8, 8), facecolor=None)
+    plt.imshow(wordcloud)
+    plt.axis("off")
+    plt.tight_layout(pad=0)
+    plt.savefig(save_file)
 
 def combine_true_fake_datasets(true_path, fake_path, save_path):
     """
@@ -52,36 +82,24 @@ def clean_dataset(file_path):
     df.to_csv(file_path, index=False)
 
 def main():
-    # creating combined dataset file
-    # true_path = 'datasets/kaggle_clement/True.csv'
-    # fake_path = 'datasets/kaggle_clement/Fake.csv'
-    # save_path = 'datasets/kaggle_clement/dataset.csv'
+    # word cloud
+    # clement
+    # file = "datasets/kaggle_clement/og files/dataset.csv"
+    # save_file = "fake_news_word_cloud_clement.png"
     #
-    # combine_true_fake_datasets(true_path, fake_path, save_path)
-
-    # replacing labels in dataset
-    # file_path = 'datasets/kaggle_ruchi/news_articles.csv'
-    # new_path = "datasets/kaggle_ruchi/dataset.csv"
-    # replace_labels(file_path, new_path, "Real", "Fake")
-
-    # dividing dataset
-    # file_path = "datasets/kaggle_comp/dataset.csv"
-    # train_path = 'datasets/kaggle_comp/train.csv'
-    # test_path = 'datasets/kaggle_comp/test.csv'
-    # valid_path = 'datasets/kaggle_comp/valid.csv'
+    # df = pd.read_csv(file)
+    # fake_df = df[df.label == 0].text
     #
-    # split_train_test_valid(file_path, train_path, test_path, valid_path)
+    # generate_word_cloud(fake_df, save_file)
 
-    # getting rid of nan text and label rows
-    # file_path = "datasets/kaggle_ruchi/dataset.csv"
-    # clean_dataset(file_path)
+    # comp
+    file = "datasets/kaggle_comp/og_files/dataset.csv"
+    save_file = "fake_news_word_cloud_comp.png"
 
-    # dividing dataset
-    train_path = 'datasets/kaggle_comp/train.csv'
-    valid_path = 'datasets/kaggle_comp/valid.csv'
-    file_path = 'datasets/kaggle_comp/train_valid.csv'
+    df = pd.read_csv(file)
+    fake_df = df[df.label == 0].text
 
-    combine_train_valid(train_path, valid_path, file_path)
+    generate_word_cloud(fake_df, save_file)
 
 if __name__ == "__main__":
     main()

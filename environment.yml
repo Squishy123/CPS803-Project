@@ -15,5 +15,8 @@ dependencies:
     - git+git://github.com/stared/livelossplot.git
   - git
   - keras
+  - pip:
+    - mlxtend
+  - pip:
+    - wordcloud
 prefix: C:\Users\Chris\miniconda3\envs\fakenews
-
