@@ -1,4 +1,3 @@
-import util
 from sklearn.pipeline import Pipeline
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.feature_extraction import text
