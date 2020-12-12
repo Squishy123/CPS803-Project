@@ -1,0 +1,10 @@
+Accuracy of naive_bayes_uni_base_comp Classifier: 90.36%
+CLassification Report of naive_bayes_uni_base_comp Classifier:
+              precision    recall  f1-score   support
+
+           0       0.86      0.97      0.91      1563
+           1       0.96      0.84      0.90      1558
+
+    accuracy                           0.90      3121
+   macro avg       0.91      0.90      0.90      3121
+weighted avg       0.91      0.90      0.90      3121

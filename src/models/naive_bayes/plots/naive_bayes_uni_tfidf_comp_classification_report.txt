@@ -1,0 +1,10 @@
+Accuracy of naive_bayes_uni_tfidf_comp Classifier: 87.02%
+CLassification Report of naive_bayes_uni_tfidf_comp Classifier:
+              precision    recall  f1-score   support
+
+           0       0.80      0.98      0.88      1563
+           1       0.98      0.76      0.85      1558
+
+    accuracy                           0.87      3121
+   macro avg       0.89      0.87      0.87      3121
+weighted avg       0.89      0.87      0.87      3121
