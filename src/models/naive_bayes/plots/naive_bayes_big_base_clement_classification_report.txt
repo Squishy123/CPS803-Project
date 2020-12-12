@@ -1,0 +1,10 @@
+Accuracy of naive_bayes_big_base_clement Classifier: 97.43%
+CLassification Report of naive_bayes_big_base_clement Classifier:
+              precision    recall  f1-score   support
+
+           0       0.98      0.97      0.98      3505
+           1       0.97      0.97      0.97      3230
+
+    accuracy                           0.97      6735
+   macro avg       0.97      0.97      0.97      6735
+weighted avg       0.97      0.97      0.97      6735

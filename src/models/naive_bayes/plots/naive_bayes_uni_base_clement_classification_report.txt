@@ -1,0 +1,10 @@
+Accuracy of naive_bayes_uni_base_clement Classifier: 95.29%
+CLassification Report of naive_bayes_uni_base_clement Classifier:
+              precision    recall  f1-score   support
+
+           0       0.96      0.95      0.95      3505
+           1       0.95      0.95      0.95      3230
+
+    accuracy                           0.95      6735
+   macro avg       0.95      0.95      0.95      6735
+weighted avg       0.95      0.95      0.95      6735

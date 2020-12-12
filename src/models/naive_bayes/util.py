@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 from sklearn.model_selection import learning_curve
 from sklearn.metrics import accuracy_score, plot_confusion_matrix, classification_report
 from sklearn.feature_extraction import text
+from pathlib import Path
 from wordcloud import WordCloud
 
 def load_dataset(folder_path, file_name):
@@ -22,25 +23,20 @@ def visualize_confusion_matrix(estimator, X, Y, title="Model Confusion Matrix", 
     disp.ax_.set_title(title)
 
     if(savefig):
-        plt.savefig(title+".png")
+        plt.savefig("plots/"+title+".jpg")
 
     return disp
 
-def visualize_k_folds(classes, title, cv, savefig=".png"):
+def visualize_k_folds(classes, title, cv, savefig=".jpg"):
 
     return 
 
-def plot_learning_curve(estimator, title, X, y, axes=None, ylim=None, cv=None,
-                        n_jobs=None, train_sizes=np.linspace(.1, 1.0, 5)):
- 
-    if axes is None:
-        _, axes = plt.subplots(1, 1, figsize=(20, 5))
-
-    axes[0].set_title(title)
-    if ylim is not None:
-        axes[0].set_ylim(*ylim)
-    axes[0].set_xlabel("Training examples")
-    axes[0].set_ylabel("Score")
+def plot_learning_curve(estimator, title, X, y, cv=None,
+                        n_jobs=None, train_sizes=np.linspace(.1, 1.0, 5), savefig=True):
+    _, axes = plt.subplots(1, 1)
+    axes.set_title(title)
+    axes.set_xlabel("Training examples")
+    axes.set_ylabel("Score")
 
     train_sizes, train_scores, test_scores, fit_times, _ = \
         learning_curve(estimator, X, y, cv=cv, n_jobs=n_jobs,
@@ -54,43 +50,56 @@ def plot_learning_curve(estimator, title, X, y, axes=None, ylim=None, cv=None,
     fit_times_std = np.std(fit_times, axis=1)
 
     # Plot learning curve
-    axes[0].grid()
-    axes[0].fill_between(train_sizes, train_scores_mean - train_scores_std,
+    axes.grid()
+    axes.fill_between(train_sizes, train_scores_mean - train_scores_std,
                          train_scores_mean + train_scores_std, alpha=0.1,
                          color="r")
-    axes[0].fill_between(train_sizes, test_scores_mean - test_scores_std,
+    axes.fill_between(train_sizes, test_scores_mean - test_scores_std,
                          test_scores_mean + test_scores_std, alpha=0.1,
                          color="g")
-    axes[0].plot(train_sizes, train_scores_mean, 'o-', color="r",
+    axes.plot(train_sizes, train_scores_mean, 'o-', color="r",
                  label="Training score")
-    axes[0].plot(train_sizes, test_scores_mean, 'o-', color="g",
+    axes.plot(train_sizes, test_scores_mean, 'o-', color="g",
                  label="Cross-validation score")
-    axes[0].legend(loc="best")
+    axes.legend(loc="best")
 
-    '''
-    # Plot n_samples vs fit_times
-    axes[1].grid()
-    axes[1].plot(train_sizes, fit_times_mean, 'o-')
-    axes[1].fill_between(train_sizes, fit_times_mean - fit_times_std,
-                         fit_times_mean + fit_times_std, alpha=0.1)
-    axes[1].set_xlabel("Training examples")
-    axes[1].set_ylabel("fit_times")
-    axes[1].set_title("Scalability of the model")
-
-    # Plot fit_time vs score
-    axes[2].grid()
-    axes[2].plot(fit_times_mean, test_scores_mean, 'o-')
-    axes[2].fill_between(fit_times_mean, test_scores_mean - test_scores_std,
-                         test_scores_mean + test_scores_std, alpha=0.1)
-    axes[2].set_xlabel("fit_times")
-    axes[2].set_ylabel("Score")
-    axes[2].set_title("Performance of the model")
-    '''
+    if(savefig):
+        plt.savefig("plots/"+title+".jpg")
 
     return plt
 
-def plot_word_cloud(model, save_file="word_cloud.png"):
-    tfidf_freq = model.named_steps['tfidf'].vocabulary_
+def plot_cv_score(cv_results, title="CV Score", savefig=True):
+    x=np.arange(len(cv_results["test_score"]))
+    y=cv_results["test_score"]*100
+
+    fig,ax = plt.subplots()
+    plt.ylim(np.min(y)-10,np.min([100, np.max(y)+10]))
+    plt.bar(x,y)
+    plt.ylabel("Accuracy Score")
+    ax.set_title(title)
+    plt.xticks(x, ("Fold " + str(i+1) for i in x))
+
+    if(savefig):
+        plt.savefig("plots/"+title+".jpg")
+
+    return plot_cv_score
+
+def print_accuracy_measures(test_y, pred_y, label="Logistic Regression", saveFile=True):
+    str="Accuracy of " + label + " Classifier: {}%".format(round(accuracy_score(test_y, pred_y) * 100, 2))
+    str+="\nCLassification Report of " + label +  " Classifier:\n"
+    str+=classification_report(test_y, pred_y)
+
+    print(str)
+
+    if saveFile:
+        p = Path('plots')
+        p.mkdir(exist_ok=True)
+        f=open('plots/'+label+"_classification_report.txt","w")
+        f.write(str)
+        f.close()
+
+def plot_word_cloud(model, save_file="word_cloud"):
+    tfidf_freq = model.named_steps['features'].vocabulary_
     coef = list(model.named_steps['model'].coef_[0])
 
     for word, idx in tfidf_freq.items():
@@ -107,10 +116,4 @@ def plot_word_cloud(model, save_file="word_cloud.png"):
     plt.imshow(wordcloud)
     plt.axis("off")
     plt.tight_layout(pad=0)
-    plt.savefig(save_file)
-
-def print_accuracy_measures(test_y, pred_y, label="Logistic Regression"):
-    print("Accuracy of Logistic Regression Classifier: {}%".format(round(accuracy_score(test_y, pred_y) * 100, 2)))
-
-    print("\nCLassification Report of " + label +  " Classifier:\n")
-    print(classification_report(test_y, pred_y))
+    plt.savefig("plots/"+save_file+".jpg")
