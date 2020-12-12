@@ -1,0 +1,10 @@
+Accuracy of naive_bayes_big_base_comp Classifier: 91.19%
+CLassification Report of naive_bayes_big_base_comp Classifier:
+              precision    recall  f1-score   support
+
+           0       0.86      0.99      0.92      1563
+           1       0.98      0.84      0.90      1558
+
+    accuracy                           0.91      3121
+   macro avg       0.92      0.91      0.91      3121
+weighted avg       0.92      0.91      0.91      3121

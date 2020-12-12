@@ -1,0 +1,10 @@
+Accuracy of naive_bayes_uni_tfidf_clement Classifier: 93.67%
+CLassification Report of naive_bayes_uni_tfidf_clement Classifier:
+              precision    recall  f1-score   support
+
+           0       0.93      0.94      0.94      3505
+           1       0.94      0.93      0.93      3230
+
+    accuracy                           0.94      6735
+   macro avg       0.94      0.94      0.94      6735
+weighted avg       0.94      0.94      0.94      6735
