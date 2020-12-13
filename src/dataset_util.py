@@ -1,5 +1,44 @@
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
+
+def plot_true_fake_pct():
+
+    file = "datasets/kaggle_clement/og files/dataset.csv"
+    save_file = "datasets_true_fake_pct_plot.png"
+    df = pd.read_csv(file)
+    total = float(df.shape[0])
+
+    fake_df = df[df.label == 0]
+    fake_count = fake_df.shape[0]
+    cl_fake_pct = round(fake_count / total, 2) * 100
+
+    cl_true_pct = 100 - cl_fake_pct
+
+    file = "datasets/kaggle_comp/og_files/dataset.csv"
+    df = pd.read_csv(file)
+    total = float(df.shape[0])
+
+    fake_df = df[df.label == 0]
+    fake_count = fake_df.shape[0]
+    co_fake_pct = round(fake_count / total, 2) * 100
+
+    co_true_pct = 100 - co_fake_pct
+
+    pct_data = {
+        "Dataset": ["Comp", "Clement"],
+        "True news": [co_true_pct, cl_true_pct],
+        "Fake news": [co_fake_pct, cl_fake_pct]
+    }
+    pct_df = pd.DataFrame(data=pct_data)
+
+    pct_df.plot(
+        x="Dataset",
+        kind="barh",
+        stacked=True,
+        figsize=[7,2.3])
+
+    plt.savefig(save_file)
 
 def combine_true_fake_datasets(true_path, fake_path, save_path):
     """
@@ -49,3 +88,8 @@ def clean_dataset(file_path):
     df = df[df['label'].notnull()]
 
     df.to_csv(file_path, index=False)
+
+def main():
+
+if __name__ == "__main__":
+    main()
