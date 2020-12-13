@@ -62,16 +62,16 @@ util.print_accuracy_measures(test_Y, pred_Y, label="log_reg_big_tfidf_comp")
 
 
 # %%
-util.visualize_confusion_matrix(base_model,test_X, test_Y,"log_reg_big_tfidf_comp_confusion_matrix")
+util.visualize_confusion_matrix(tfidf_model,test_X, test_Y,"log_reg_big_tfidf_comp_confusion_matrix")
 
 
 # %%
-tfidf_cv_results = cross_validate(base_model, train_X, train_Y, cv=KFold(5))
-util.plot_cv_score(base_cv_results,title="log_reg_big_tfidf_comp_cv_score_bar")
+tfidf_cv_results = cross_validate(tfidf_model, train_X, train_Y, cv=KFold(5))
+util.plot_cv_score(tfidf_cv_results,title="log_reg_big_tfidf_comp_cv_score_bar")
 
 
 # %%
-util.plot_learning_curve(base_model, "log_reg_big_tfidf_comp_learning_curve", train_X,train_Y, cv=KFold(5), n_jobs=4)
+util.plot_learning_curve(tfidf_model, "log_reg_big_tfidf_comp_learning_curve", train_X,train_Y, cv=KFold(5), n_jobs=4)
 
 
 # %%
