@@ -1,0 +1,10 @@
+Accuracy of log_reg_uni_base_clement Classifier: 99.35%
+CLassification Report of log_reg_uni_base_clement Classifier:
+              precision    recall  f1-score   support
+
+           0       0.99      0.99      0.99      3505
+           1       0.99      0.99      0.99      3230
+
+    accuracy                           0.99      6735
+   macro avg       0.99      0.99      0.99      6735
+weighted avg       0.99      0.99      0.99      6735

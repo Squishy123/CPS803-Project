@@ -1,0 +1,10 @@
+Accuracy of log_reg_uni_tfidf_clement Classifier: 98.41%
+CLassification Report of log_reg_uni_tfidf_clement Classifier:
+              precision    recall  f1-score   support
+
+           0       0.99      0.98      0.98      3505
+           1       0.98      0.98      0.98      3230
+
+    accuracy                           0.98      6735
+   macro avg       0.98      0.98      0.98      6735
+weighted avg       0.98      0.98      0.98      6735
