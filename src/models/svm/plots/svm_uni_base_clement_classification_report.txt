@@ -1,0 +1,10 @@
+Accuracy of svm_uni_base_clement Classifier: 99.51%
+CLassification Report of svm_uni_base_clement Classifier:
+              precision    recall  f1-score   support
+
+           0       1.00      0.99      1.00      3505
+           1       0.99      1.00      0.99      3230
+
+    accuracy                           1.00      6735
+   macro avg       1.00      1.00      1.00      6735
+weighted avg       1.00      1.00      1.00      6735

@@ -1,0 +1,10 @@
+Accuracy of svm_uni_base_comp Classifier: 94.59%
+CLassification Report of svm_uni_base_comp Classifier:
+              precision    recall  f1-score   support
+
+           0       0.96      0.93      0.95      1563
+           1       0.94      0.96      0.95      1558
+
+    accuracy                           0.95      3121
+   macro avg       0.95      0.95      0.95      3121
+weighted avg       0.95      0.95      0.95      3121
