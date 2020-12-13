@@ -1,0 +1,10 @@
+Accuracy of svm_uni_tfidf_clement Classifier: 96.94%
+CLassification Report of svm_uni_tfidf_clement Classifier:
+              precision    recall  f1-score   support
+
+           0       0.98      0.96      0.97      3505
+           1       0.96      0.97      0.97      3230
+
+    accuracy                           0.97      6735
+   macro avg       0.97      0.97      0.97      6735
+weighted avg       0.97      0.97      0.97      6735

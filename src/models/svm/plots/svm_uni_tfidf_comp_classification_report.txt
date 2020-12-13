@@ -1,0 +1,10 @@
+Accuracy of svm_uni_tfidf_comp Classifier: 90.0%
+CLassification Report of svm_uni_tfidf_comp Classifier:
+              precision    recall  f1-score   support
+
+           0       0.94      0.85      0.90      1563
+           1       0.87      0.95      0.90      1558
+
+    accuracy                           0.90      3121
+   macro avg       0.90      0.90      0.90      3121
+weighted avg       0.90      0.90      0.90      3121

@@ -1,0 +1,10 @@
+Accuracy of svm_big_tfidf_comp Classifier: 90.52%
+CLassification Report of svm_big_tfidf_comp Classifier:
+              precision    recall  f1-score   support
+
+           0       0.95      0.86      0.90      1563
+           1       0.87      0.95      0.91      1558
+
+    accuracy                           0.91      3121
+   macro avg       0.91      0.91      0.90      3121
+weighted avg       0.91      0.91      0.90      3121
