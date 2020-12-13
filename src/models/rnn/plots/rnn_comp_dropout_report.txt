@@ -1,0 +1,3 @@
+RNN_comp_reg_report
+Test Loss: 0.1176343485713005
+Test Accuracy: 0.9641140699386597
