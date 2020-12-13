@@ -21,7 +21,7 @@ test_X, test_Y = util.load_dataset(folder_path, test_file)
 
 # %% [markdown]
 # <h2> Base Model with Term Frequency</h2>
-
+'''
 # %%
 base_model = lr.BaseLogRegModel()
 base_model.fit(train_X, train_Y)
@@ -47,7 +47,7 @@ util.plot_learning_curve(base_model, "log_reg_uni_base_clement_learning_curve", 
 
 # %%
 util.plot_word_cloud(base_model,"log_reg_uni_base_clement_word_cloud")
-
+'''
 # %% [markdown]
 # <h2> Adding TFIDF </h2>
 
