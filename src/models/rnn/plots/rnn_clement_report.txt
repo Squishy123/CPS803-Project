@@ -1,0 +1,3 @@
+RNN_clement_report
+Test Loss: 0.007652379106730223
+Test Accuracy: 0.9977728128433228

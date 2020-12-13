@@ -1,0 +1,10 @@
+Accuracy of log_reg_big_base_comp Classifier: 95.71%
+CLassification Report of log_reg_big_base_comp Classifier:
+              precision    recall  f1-score   support
+
+           0       0.97      0.95      0.96      1563
+           1       0.95      0.97      0.96      1558
+
+    accuracy                           0.96      3121
+   macro avg       0.96      0.96      0.96      3121
+weighted avg       0.96      0.96      0.96      3121
