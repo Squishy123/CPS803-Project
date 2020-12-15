@@ -1,5 +1,7 @@
-# CPS803-Project
-Fake News Detection
+# Fake News Detection CPS803-Project
+
+## [YouTube Video HERE!](https://www.youtube.com/watch?v=CY6PMvMSs0Q)
+## [Project Report HERE!](src/summary/report.pdf)
 
 Checkout [Contributions](CONTRIBUTIONS.md)
 # Running Code
